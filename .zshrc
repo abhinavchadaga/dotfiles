@@ -60,7 +60,7 @@ zstyle ':fzf-tab:complete:*:*' fzf-preview \
      echo "📋 Executable: $word"
      which $word
    elif [[ -d $realpath ]]; then
-     tree -a -C -L 2 $realpath 2>/dev/null || ls -la --color=always $realpath
+     tree -a -C -L 2 -I ".git|node_modules|.DS_Store|venv|.venv" $realpath 2>/dev/null || ls -la --color=always $realpath
    elif [[ -f $realpath ]]; then
      bat --style=numbers --color=always $realpath 2>/dev/null || cat $realpath
    else
@@ -75,6 +75,7 @@ alias ls='ls --color'
 alias l='ls'
 alias ll='ls -l'
 alias lla="ls -al"
+alias lt='tree -a -C -L 2 -I ".git|node_modules|.DS_Store|venv|.venv"'
 
 # Ensure globstar and no match errors are handled
 setopt globstarshort
