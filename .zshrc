@@ -47,12 +47,28 @@ zstyle ':completion:*' matcher-list \
   'l:|=* r:|=*'
 zstyle ':completion:*' list-colors "{(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
+
+typeset -gx EXPORTED_ALIASES
+EXPORTED_ALIASES=$(alias)
+
+# Preview can then parse this
 zstyle ':fzf-tab:complete:*:*' fzf-preview \
-  'if [[ -d $realpath ]]; then
-     tree -C -L 2 $realpath 2>/dev/null || ls -la --color=always $realpath
+  'if [[ -n $word ]] && echo "$EXPORTED_ALIASES" | grep -q "^$word="; then
+     echo "📋 Alias: $word"
+     echo "$EXPORTED_ALIASES" | grep "^$word=" | sed "s/^[^=]*=//"
+   elif [[ -n $word ]] && command -v $word >/dev/null 2>&1; then
+     echo "📋 Executable: $word"
+     which $word
+   elif [[ -d $realpath ]]; then
+     tree -a -C -L 2 $realpath 2>/dev/null || ls -la --color=always $realpath
    elif [[ -f $realpath ]]; then
      bat --style=numbers --color=always $realpath 2>/dev/null || cat $realpath
+   else
+     echo "Preview: ${realpath:-$word}"
    fi'
+
+zstyle ':fzf-tab:*' fzf-min-height 20
+zstyle ':fzf-tab:*' fzf-preview-window 'right:70%:wrap'
 
 # ls aliases
 alias ls='ls --color'
@@ -107,6 +123,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # PATH modifications
+eval "$($HOMEBREW_PREFIX/bin/brew shellenv)"
 export PATH="$HOMEBREW_PREFIX/opt/llvm/bin:$PATH"
 export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
@@ -116,9 +133,6 @@ export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 # Help llvm clang tidy find system headers
 export SDKROOT=$(xcrun --show-sdk-path)
-
-# Add pipx to path
-export PATH="$PATH:/Users/abhinavchadaga/.local/bin"
 
 # use oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/pure.json)"
