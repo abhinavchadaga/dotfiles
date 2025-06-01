@@ -73,6 +73,7 @@ zstyle ':fzf-tab:*' fzf-preview-window 'right:70%:wrap'
 # ls aliases
 alias ls='ls --color'
 alias l='ls'
+alias la="ls -a"
 alias ll='ls -l'
 alias lla="ls -al"
 alias lt='tree -a -C -L 2 -I ".git|node_modules|.DS_Store|venv|.venv"'
