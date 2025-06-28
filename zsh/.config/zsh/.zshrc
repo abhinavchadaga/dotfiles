@@ -65,3 +65,4 @@ export FZF_ALT_C_OPTS="
   --preview 'tree -C {}'"
 
 export EDITOR="vim"
+
