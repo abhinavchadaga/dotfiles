@@ -38,6 +38,7 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt globdots
 
+
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -66,3 +67,11 @@ export FZF_ALT_C_OPTS="
 
 export EDITOR="vim"
 
+# enable emacs keybindings
+bindkey -e
+
+# fix option + left/right arrow in tmux
+if [[ -n "$TMUX" ]]; then
+  bindkey "^[[1;3D" backward-word   
+  bindkey "^[[1;3C" forward-word    
+fi
