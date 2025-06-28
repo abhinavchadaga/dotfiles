@@ -5,7 +5,10 @@ normal = { family = "JetBrainsMono Nerd Font", style = "Bold" }
 [env]
 TERM = "alacritty"
 
+
+
 ## NATURAL TEXT EDITING KEYBINDS FOR MAC!
+## TODO: make this load only on MacOS [https://github.com/abhinavchadaga/dotfiles/issues/1]
 [[keyboard.bindings]]
 key = "Back"
 mods = "Alt"
@@ -44,3 +47,8 @@ chars = "\u0004"
 key = "Delete"
 mods = "Alt"
 chars = "\u001bd"
+
+[general]
+import = [
+    "./themes/kanagawa_dragon.toml"
+]

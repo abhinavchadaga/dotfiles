@@ -62,3 +62,5 @@ export FZF_DEFAULT_OPTS="--ansi"
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
+
+export EDITOR="vim"
