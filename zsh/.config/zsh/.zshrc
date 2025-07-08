@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# source zprofile
+source $ZDOTDIR/.zprofile
+
 # install znit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
@@ -22,10 +25,13 @@ zinit light sindresorhus/pure
 # snippets
 zinit snippet OMZP::git
 
+# zsh history
 HISTSIZE=5000
 HISTFILE=$ZDOTDIR/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
+
+# zsh options
 setopt appendhistory
 setopt sharehistory
 setopt hist_ignore_space
@@ -48,17 +54,13 @@ zstyle ':fzf-tab:*' fzf-min-height 20
 zstyle ':fzf-tab:*' fzf-preview-window 'right:70%:wrap'
 zstyle ':completion:*:git-checkout:*' sort false
 
-# load MacOS specific stuff
+# load MacOS specific interactive stuff
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    source $ZDOTDIR/macos.zsh
+    source $ZDOTDIR/macos/interactive.zsh
 fi
 
 # load aliases
 source $ZDOTDIR/aliases.zsh
 
-export EDITOR="vim"
-
 # enable emacs keybindings
 bindkey -e
-
-

@@ -1,8 +1,11 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# PATH modifications
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
-# Added by OrbStack: command-line tools and integration
-# This won't be added again if you remove it.
-source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# env variables
+export EDITOR="code"
 
-# Created by `pipx` on 2025-05-03 19:50:55
-export PATH="$PATH:/Users/abhinavchadaga/.local/bin"
+# load MacOS specific env vars
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    source $ZDOTDIR/macos/profile.zsh
+fi
