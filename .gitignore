@@ -1,0 +1,4 @@
+*.zcomp*
+*.zcache*
+*.zsh_history
+*tmux/plugins/*
