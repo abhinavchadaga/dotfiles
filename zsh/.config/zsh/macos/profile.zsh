@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Homebrew setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # llvm setup
 if command -v brew &>/dev/null && brew --prefix llvm &>/dev/null; then
     export PATH="$(brew --prefix llvm)/bin:$PATH"
