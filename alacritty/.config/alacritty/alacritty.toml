@@ -7,6 +7,9 @@ TERM = "alacritty"
 
 [window]
 option_as_alt = "OnlyLeft"
+decorations_theme_variant = "Dark"
+opacity = 0.90
+blur = true
 
 [general]
 import = [

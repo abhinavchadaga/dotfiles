@@ -21,3 +21,11 @@ if [[ "$TERM" == "alacritty" ]]; then
     bindkey "^[[3;10~" backward-kill-word
     bindkey "^[[3;3~" kill-word
 fi
+
+# help llvm clang find macos headers
+export SDKROOT=$(xcrun --show-sdk-path)
+
+# orbstack integration
+if command -v orb &>/dev/null; then
+    source ~/.orbstack/shell/init.zsh 2>/dev/null || true
+fi
