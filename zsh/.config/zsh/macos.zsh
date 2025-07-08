@@ -29,3 +29,9 @@ export SDKROOT=$(xcrun --show-sdk-path)
 if command -v orb &>/dev/null; then
     source ~/.orbstack/shell/init.zsh 2>/dev/null || true
 fi
+
+# fix option + left/right arrow in tmux
+if [[ -n "$TMUX" ]]; then
+  bindkey "^[[1;3D" backward-word   
+  bindkey "^[[1;3C" forward-word    
+fi

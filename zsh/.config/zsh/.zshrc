@@ -5,12 +5,9 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-# source fzf
-source <(fzf --zsh)
 
-# load completions
-autoload -Uz compinit && compinit
-zinit cdreplay -q
+# fzf setup
+source $ZDOTDIR/fzf.zsh
 
 # plugins
 zinit light Aloxaf/fzf-tab
@@ -38,6 +35,9 @@ setopt hist_ignore_dups
 setopt hist_find_no_dups
 setopt globdots
 
+# load completions
+autoload -Uz compinit && compinit
+zinit cdreplay -q
 
 # Completion styling
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -53,26 +53,12 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     source $ZDOTDIR/macos.zsh
 fi
 
+# load aliases
 source $ZDOTDIR/aliases.zsh
-
-# fzf environment variables
-export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'bat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
-export FZF_DEFAULT_OPTS="--ansi"
-export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'tree -C {}'"
 
 export EDITOR="vim"
 
 # enable emacs keybindings
 bindkey -e
 
-# fix option + left/right arrow in tmux
-if [[ -n "$TMUX" ]]; then
-  bindkey "^[[1;3D" backward-word   
-  bindkey "^[[1;3C" forward-word    
-fi
 
