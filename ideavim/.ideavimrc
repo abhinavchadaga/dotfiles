@@ -1,0 +1,77 @@
+" basic options
+set scrolloff=10
+set number
+set relativenumber
+set surround
+set showmode
+set showcmd
+set visualbell
+set clipboard+=unnamed
+
+" search options
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+
+" set leader key to space
+let mapleader = " "
+
+" third party plugins
+set surround
+set highlightedyank
+set nerdtree
+set easymotion
+set notimeout
+set which-key
+set commentary
+
+" Tab navigation
+nnoremap <A-n> :tabnext<CR>
+nnoremap <A-p> :tabprev<CR>
+
+" Pane navigation
+nnoremap <A-h> <C-w>h
+nnoremap <A-l> <C-w>l
+nnoremap <A-k> <C-w>k
+nnoremap <A-j> <C-w>j
+map <esc> :noh<cr>
+
+" LSP Related keybinds
+map gra <Action>(ShowIntentionActions)
+map grn <Action>(RenameElement)
+map grd <Action>(GotoDeclaration)
+map gri <Action>(GoToImplementation)
+map grr <Action>(FindUsages)
+map grt <Action>(GotoTypeDeclaration)
+map gO <Action>(FileStructurePopup)
+map <shift>K <Action>(QuickJavaDoc)
+map <leader>mp <Action>(ReformatCode)
+imap <C-k> <Action>(ParameterInfo)
+
+" Map <leader>d to start debug
+map <leader>d <Action>(Debug)
+
+" Map \b to toggle the breakpoint on the current line
+map \b <Action>(ToggleLineBreakpoint)
+
+" Jump around with easymotion
+map <leader>j <Plug>(easymotion-s)
+
+" Open NERDTree (use q to exit)
+map <leader>e :NERDTreeToggle<CR>
+
+" File navigation
+map <leader>sf <action>(GotoFile)
+map <leader>sg <action>(FindInPath)
+map <leader><leader> <Action>(RecentFiles)
+map <leader>ss <action>(GotoSymbol)
+
+" for linux
+map \f <action>(Find)
+map \r <action>(Replace)
+
+" Errors
+map ]d <Action>(GotoNextError)
+map [d <Action>(GotoPreviousError)
+
