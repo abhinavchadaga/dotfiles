@@ -17,3 +17,7 @@ export PATH="$HOMEBREW_PREFIX/opt/findutils/libexec/gnubin:$PATH"
 
 # help llvm clang find macos headers
 export SDKROOT=$(xcrun --show-sdk-path)
+
+# claude installation
+alias claude="$HOME/.local/state/claude/launcher/claude-v0.0.8.sh"
+
